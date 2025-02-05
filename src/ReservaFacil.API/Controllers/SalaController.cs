@@ -5,13 +5,13 @@ namespace ReservaFacil.API.Controllers;
 
 [ApiController]
 [Route("/[controller]")]
-public class CursoController(ICursoRepository cursoRepository) : Controller
+public class SalaController(ISalaRepository salaRepository) : Controller
 {
     [HttpGet("Obter")]
     public async Task<IActionResult> Obter()
     {
-        var cursos = await cursoRepository.ObterAsync();
-
-        return Ok(cursos);
+        var salas = await salaRepository.ObterAsync();
+        
+        return Ok(salas);
     }
 }

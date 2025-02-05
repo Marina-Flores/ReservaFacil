@@ -1,0 +1,46 @@
+﻿@model ReservaFacil.Application.ViewModels.ListaSalasViewModel
+
+@{
+    Layout = null;
+}
+
+@if (Model.Salas.Any())
+{
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-20">Sala</th>
+                    <th scope="col" class="w-20 text-center">Bloco</th>
+                    <th scope="col" class="w-40 text-center">Curso</th>
+                    <th scope="col" class="w-10 text-center">Laboratório?</th>
+                    <th scope="col" class="w-10 text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sala in Model.Salas)
+                {
+                    var laboratorio = sala.Laboratorio ? "Sim" : "Não";
+
+                    <tr>
+                        <td>@sala.Numero</td>
+                        <td class="text-center">@sala.Bloco</td>
+                        <td class="text-center">@Model.Cursos.FirstOrDefault(x => x.Id == sala.IdCurso)?.Nome</td>
+                        <td class="text-center">@laboratorio</td>
+                        <td class="text-center">
+                            <a class="cursor-pointer" onclick="editarSala(@sala.Id)">
+                                <i class="fa-solid fa-user-pen text-color-primary"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+        </table>
+    </div>
+    @Html.Partial("_Paginacao", (Model.PaginaAtiva, Model.QuantidadePaginas))
+}
+else
+{
+    <p>Não há registros!!</p>
+}

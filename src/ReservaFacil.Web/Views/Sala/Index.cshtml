@@ -4,12 +4,17 @@
 
 @await Html.PartialAsync("_Header", new { Titulo = "Salas", PaginaInicial = true })
 
+@section Scripts {
+<script src="~/js/views/Sala/index.js"></script>
+}
+
 <div class="container mt-4">
     <div class="text-end">
         <a class="btn btn-primary" href="Sala/Cadastro">Adicionar Sala</a>
         <hr />
     </div>
-    <div>
-        
+    <div id="divListaSalas">
+
     </div>
+    <input type="hidden" value="1" id="numeroPagina" />
 </div>
